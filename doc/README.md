@@ -1,3 +1,10 @@
+## 시작하기
+
+<br />
+
+App.js
+
+```js
 import {
   useQuery,
   useMutation,
@@ -57,3 +64,6 @@ function Todos() {
 }
 
 render(<App />, document.getElementById('root'));
+```
+
+> Queries, Mutations, Query-Invalidation <br/><br/> 이 3가지는 react-query의 핵심 기능의 대부분을 구성한다.
