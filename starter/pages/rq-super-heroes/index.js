@@ -1,6 +1,6 @@
 import React from "react";
 
-import { isError, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import axios from "axios";
 
 const fetchSuperHeroes = () => {
@@ -8,12 +8,12 @@ const fetchSuperHeroes = () => {
 };
 
 const RQSuperHeroes = () => {
-  const onSuccess = () => {
-    console.log("Perform side effect after data fetching");
+  const onSuccess = (data) => {
+    console.log("Perform side effect after data fetching", data);
   };
 
-  const onError = () => {
-    console.log("Perform side effect after encountering error");
+  const onError = (error) => {
+    console.log("Perform side effect after encountering error", error);
   };
 
   // TODO: 이렇게 쓰는 거를
@@ -26,18 +26,8 @@ const RQSuperHeroes = () => {
     "super-heroes",
     fetchSuperHeroes,
     {
-      // cacheTime: 5000,
-
-      // staleTime: 0,
-
-      // refetchOnMount: true,
-      // refetchOnWindowFocus
-
-      // refetchInterval: 2000,
-      // refetchIntervalInBackground: true,
-
-      // enable이 false일 때 data를 가져오지 않음
-      enabled: false,
+      onSuccess,
+      onError,
     }
   );
 
@@ -61,8 +51,7 @@ const RQSuperHeroes = () => {
       <h2>RQSuperHeroes</h2>
       <Loading />
       <Error />
-      {/* 버튼을 눌렀을 때 refetch를 통해 데이터를 가져옴 */}
-      <button onClick={refetch}>Fetch Heroes</button>
+
       {data?.data.map((hero) => {
         return <div key={hero.name}>{hero.name}</div>;
       })}
