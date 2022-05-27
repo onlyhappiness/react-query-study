@@ -27,6 +27,16 @@ const Nav = () => {
               <a>cccc</a>
             </Link>
           </li>
+          <li>
+            <Link href="/InfiniteQueries">
+              <a>dddd</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/AddHero">
+              <a>eeee</a>
+            </Link>
+          </li>
           {/* <li>
             <Link href="/parallel">
               <a>cccc</a>

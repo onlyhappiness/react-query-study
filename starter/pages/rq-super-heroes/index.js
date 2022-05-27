@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useSuperHeroesData } from "../../hooks/useSuperHeroesData";
 
 const RQSuperHeroes = () => {
   const router = useRouter();
+  const [name, setName] = useState("");
+  const [alterEgo, setAlterEgo] = useState("");
 
   const onSuccess = (data) => {
     console.log("Perform side effect after data fetching", data);
@@ -34,11 +36,17 @@ const RQSuperHeroes = () => {
     }
   };
 
+  const handleAddHeroClick = () => {
+    console.log({ name, alterEgo });
+  };
+
   return (
     <>
       <h2>RQSuperHeroes</h2>
       <Loading />
       <Error />
+
+      <div></div>
 
       {data?.data.map((hero) => {
         return (
