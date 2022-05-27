@@ -1,13 +1,10 @@
 import React from "react";
-
-import { useQuery } from "react-query";
-import axios from "axios";
-
-const fetchSuperHeroes = () => {
-  return axios.get("http://localhost:4000/superheroes");
-};
+import { useRouter } from "next/router";
+import { useSuperHeroesData } from "../../hooks/useSuperHeroesData";
 
 const RQSuperHeroes = () => {
+  const router = useRouter();
+
   const onSuccess = (data) => {
     console.log("Perform side effect after data fetching", data);
   };
@@ -16,22 +13,13 @@ const RQSuperHeroes = () => {
     console.log("Perform side effect after encountering error", error);
   };
 
-  // TODO: 이렇게 쓰는 거를
-  // const {isLoading, data} = useQuery("super-heroes", () => {
-  //   return axios.get("http://localhost:4000/superheroes");
-  // })
-  // FIXME: 이렇게 변경
-  // 위에 fetchSuperHeroes 만듦
-  const { isLoading, data, isError, error, isFetching, refetch } = useQuery(
-    "super-heroes",
-    fetchSuperHeroes,
-    {
-      onSuccess,
-      onError,
-    }
-  );
+  const { isLoading, data, isError, error, isFetching, refetch } =
+    useSuperHeroesData(onSuccess, onError);
 
-  console.log({ isLoading, isFetching });
+  // console.log({
+  //   isLoading,
+  //   isFetching,
+  // });
 
   const Loading = () => {
     if (isLoading || isFetching) {
@@ -53,8 +41,25 @@ const RQSuperHeroes = () => {
       <Error />
 
       {data?.data.map((hero) => {
-        return <div key={hero.name}>{hero.name}</div>;
+        return (
+          <div
+            key={hero.id}
+            style={{
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              router.push({
+                pathname: `/rq-super-heroes/${hero?.id}`,
+              });
+            }}
+          >
+            {hero.name}
+          </div>
+        );
       })}
+      {/* {data?.map((heroName) => {
+        return <div key={heroName}>{heroName}</div>;
+      })} */}
     </>
   );
 };

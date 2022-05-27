@@ -22,6 +22,16 @@ const Nav = () => {
               <a>bbbb</a>
             </Link>
           </li>
+          <li>
+            <Link href="/paginated">
+              <a>cccc</a>
+            </Link>
+          </li>
+          {/* <li>
+            <Link href="/parallel">
+              <a>cccc</a>
+            </Link>
+          </li> */}
         </ul>
       </nav>
     </div>
