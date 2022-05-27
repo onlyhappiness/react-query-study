@@ -11,27 +11,7 @@ export default function Home() {
         <title>Next with react query</title>
       </Head>
 
-      <div>
-        <nav className={styles.nav}>
-          <ul>
-            <li>
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/super-heroes">
-                <a>aaaa</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/rq-super-heroes">
-                <a>bbbb</a>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <div>Home</div>
     </div>
   );
 }
